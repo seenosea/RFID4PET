@@ -85,16 +85,58 @@ void loop() {
     FirebaseObject data = Firebase.get(Value);
     if(data.isNullString()){
       // If null
-      Serial.println("NOT FOUND");
-      /*Serial.println("Enter");
+      Serial.println("Card wasn't found");
+      Serial.println("Enter ");
+      String Target = "";
       while (Serial.available() > 0) {
-        Firebase.set(Value+"/NAME", Serial.read());
-    
-      }*/
+        Target = Serial.readString();
+      }
+      Serial.println(Target);
     }else{
       // If have data
-      Serial.println(data.getString("NAME"));
-      Serial.println(data.getString("GENDER"));
+      String Target = Value;
+      Serial.println("--------------------------------------------------");
+      
+      Serial.print("RFID code : ");
+      Serial.println(Target);
+      
+      Serial.print("Number : ");
+      String Number = Firebase.getString(Target+"/NUMBER");
+      Serial.println(Number);
+
+      Serial.print("Pet's Name : ");
+      String Name = Firebase.getString(Target+"/NAME");
+      Serial.println(Name);
+      
+      Serial.print("Kind : ");
+      String Kind = Firebase.getString(Target+"/KIND");
+      Serial.println(Kind);
+
+      Serial.print("Specie : ");
+      String Specie = Firebase.getString(Target+"/SPECIE");
+      Serial.println(Specie);
+
+      Serial.print("Gender : ");
+      String Gender = Firebase.getString(Target+"/GENDER");
+      Serial.println(Gender);
+
+      Serial.print("Date of Birth : ");
+      String Dateofbirth = Firebase.getString(Target+"/DATEOFBIRTH");
+      Serial.println(Dateofbirth);
+
+      Serial.print("Colors : ");
+      String Colors = Firebase.getString(Target+"/COLORS");
+      Serial.println(Colors);
+
+      Serial.print("Owner : ");
+      String Owner = Firebase.getString(Target+"/OWNER");
+      Serial.println(Owner);
+
+      Serial.print("Contact tel : ");
+      String Contact = Firebase.getString(Target+"/CONTACT");
+      Serial.println(Contact);
+
+      Serial.println("------------------------------------------------");
     }
     // End of Game. GGWP m8
 
@@ -137,15 +179,15 @@ void sentValue(byte *buffer, byte bufferSize) {
   Serial.println("Sent successful");
 }
 
-void FirebaseNew(String Target, String Namber, String Name, String Kind, String Specie, String Gendar, String Dateofbirth, String Colors, String Owner, String Contact){
-  Firebase.set(Target+"/NUMBER", Number);
-  Firebase.set(Target+"/NAME", Name);
-  Firebase.set(Target+"/KIND", Kind);
-  Firebase.set(Target+"/SPECIE", Specie);
-  Firebase.set(Target+"/GENDER", Gender);
-  Firebase.set(Target+"/DATEOFBIRTH", Dateofbirth);
-  Firebase.set(Target+"/COLORS", Colors);
-  Firebase.set(Target+"/OWNER", Owner);
-  Firebase.set(Target+"/CONTACT", Contact);
+void FirebaseNew(String Target, String Number, String Name, String Kind, String Specie, String Gender, String Dateofbirth, String Colors, String Owner, String Contact){
+  Firebase.setString(Target+"/NUMBER", Number);
+  Firebase.setString(Target+"/NAME", Name);
+  Firebase.setString(Target+"/KIND", Kind);
+  Firebase.setString(Target+"/SPECIE", Specie);
+  Firebase.setString(Target+"/GENDER", Gender);
+  Firebase.setString(Target+"/DATEOFBIRTH", Dateofbirth);
+  Firebase.setString(Target+"/COLORS", Colors);
+  Firebase.setString(Target+"/OWNER", Owner);
+  Firebase.setString(Target+"/CONTACT", Contact);
 }
 
