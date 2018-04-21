@@ -27,7 +27,7 @@ void setup() {
   Serial.println(WiFi.localIP());
 
   Firebase.begin(FIREBASE_HOST, FIREBASE_KEY);
-  FirebaseNew("30c3d449", "1", "Job", "Dog", "Bulldog", "Male", "5/17/2549", "Brown", "Jettawat", "086 770 3121");
+  /*FirebaseNew("30c3d449", "1", "Job", "Dog", "Bulldog", "Male", "5/17/2549", "Brown", "Jettawat", "086 770 3121");*/
   FirebaseNew("a024f56b", "2", "Donut", "Cat", "Persian", "Male", "12/12/2557", "Black", "Supakit", "085 551 2134");
   FirebaseNew("f255ddc1", "3", "Nine", "Boar", "Scrofa", "Female", "6/2/2560", "Yellow", "Somsak", "086 143 4422");
   FirebaseNew("4c51d322", "4", "Pee", "Crocodie", "Philippine", "Male", "2/25/2541", "Rainbow", "Sumet", "1669");
@@ -86,8 +86,56 @@ void loop() {
     if(data.isNullString()){
       // If null
       Serial.println("Card wasn't found");
-      Serial.println("Enter ");
+      Serial.println("--------------------------------------------------");
+      Serial.print("Enter number :");
+      delay(10000);
+      String gotnumber = Serial.readString();
+      Serial.println(gotnumber);
+      
+      Serial.print("Enter name :");
+      delay(10000);
+      String gotname = Serial.readString();
+      Serial.println(gotname);
+      
+      Serial.print("Enter kind :");
+      delay(10000);
+      String gotkind = Serial.readString();
+      Serial.println(gotkind);
+      
+      Serial.print("Enter specie :");
+      delay(10000);
+      String gotspecie = Serial.readString();
+      Serial.println(gotspecie);
+      
+      Serial.print("Enter sex :");
+      delay(10000);
+      String gotsex = Serial.readString();
+      Serial.println(gotsex);
+      
+      Serial.print("Enter date of birth :");
+      delay(10000);
+      String gotdob = Serial.readString();
+      Serial.println(gotdob);
+      
+      Serial.print("Enter color :");
+      delay(10000);
+      String gotcolor = Serial.readString();
+      Serial.println(gotcolor);
+      
+      Serial.print("Enter owner name :");
+      delay(10000);
+      String gotown = Serial.readString();
+      Serial.println(gotown);
+      
+      Serial.print("Enter contact :");
+      delay(10000);
+      String gotcon = Serial.readString();
+      Serial.println(gotcon);
+      
+      FirebaseNew(Value,gotnumber,gotname,gotkind,gotspecie,gotsex,gotdob,gotcolor,gotown,gotcon);
       String Target = "";
+      Serial.println("Sent complete");
+      Serial.println("--------------------------------------------------");
       while (Serial.available() > 0) {
         Target = Serial.readString();
       }
